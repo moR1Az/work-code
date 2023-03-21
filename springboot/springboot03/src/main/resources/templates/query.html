@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>query</title>
+</head>
+<body>
+<h3>Query Page</h3>
+
+<span th:text="${session.user1.uName}"></span>,Welcome!
+<hr>
+<form th:action="@{/user/getAllUser}" method="get">
+    Search for username:<input type="text" name="name" th:value="${moh}">
+    <input type="submit" value="search">
+</form>
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <td>Rank</td>
+        <td>Userid</td>
+        <td>name</td>
+        <td>password</td>
+        <td>age</td>
+        <td>birthday</td>
+        <td>roleID</td>
+        <td>roleID</td>
+        <td>role</td>
+    </tr>
+    <tr th:each="user,status:${list}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${user.uId}"></td>
+        <td th:text="${user.uName}"></td>
+        <td th:text="${user.uPassword}"></td>
+        <td th:text="${user.uAge}"></td>
+        <td th:text="${#dates.format(user.uBirthday,'yyyy-MM-dd')}"></td>
+        <td th:text="${user.rId}"></td>
+        <td th:text="${user.role.rId}"></td>
+        <td th:text="${user.role.rName}"></td>
+    </tr>
+    <tr>
+        <td colspan="9" align="center">
+            <a th:href="@{/user/getAllUser(currentPage=1,name=${moh})}">Home Page</a>
+            <a th:href="@{/user/getAllUser(currentPage=${pages.getPrePage()},name=${moh})}">Previous page</a>
+            <a th:each="num:${pages.getPageList()}" th:href="@{/user/getAllUser(currentPage=${num},name=${moh})}" th:text="${num}"></a>
+            <a th:href="@{/user/getAllUser(currentPage=${pages.getNextPage()},name=${moh})}">Next Page</a>
+            <a th:href="@{/user/getAllUser(currentPage=${pages.getTotalPage()},name=${moh})}">Last Page</a>
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+</body>
+</html>

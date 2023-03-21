@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Login Successful!</h2>
+<!---->
+<hr>
+<p th:text="${session.user1}"></p>
+<hr>
+<form>
+    <input type="hidden" name="id" th:value="user1.id">
+    username:<input type="text" name="name" th:value="${user1.name}"/><br>
+    password:<input type="text" name="password" th:value="${user1.password}"/><br>
+    age:<input type="text" name="age" th:value="${user1.age}"/><br>
+    birthday:<input type="text" name="birthday" th:value="${#dates.format(user1.birthday,'yyyy-MM-dd hh:mm:ss')}"/>
+</form>
+</body>
+</html>

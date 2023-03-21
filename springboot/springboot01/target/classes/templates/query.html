@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>query</title>
+</head>
+<body>
+<h3>Query Page</h3>
+<div th:text="${session.list}"></div>
+<hr>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <td>Rank</td>
+        <td>id</td>
+        <td>name</td>
+        <td>password</td>
+        <td>age</td>
+        <td>birthday</td>
+    </tr>
+    <tr th:each="user,status:${session.list}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${#dates.format(user.birthday,'yyyy-MM-dd')}"></td>
+    </tr>
+</table>
+<hr>
+<select name="name">
+    <option>--Select--</option>
+    <option th:each="user:${session.list}" th:text="${user.name}"></option>
+</select>
+
+<a th:href="@{/user/link(id=3)}">href</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+#
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: root
+#  thymeleaf:
+#    cache: false
+#    prefix: classpath:/templates/
+#    suffix: .html
+##  web:
+##    resources:
+##      static-locations: classpath:/pages/,classpath
+mybatis:
+  type-aliases-package: com.work.springboot03.pojo
+  mapper-locations: classpath:/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 9996
+  tomcat:
+    uri-encoding: UTF-8
+logging:
+  level:
+    root: info
+    org.mybatis: debug
+    com.work.springboot03: debug
